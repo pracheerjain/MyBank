@@ -35,7 +35,7 @@ public class FundTransferController {
 	public ResponseEntity<Object> fundTransfer(@RequestBody FundTranferDTO fundTranferDTO) throws ApplicationException {
 		logger.info("Received fund transfer request.");
 		validateRequest(fundTranferDTO);
-		ResponseDTO fundTransferResponse = fundTransferService.FundTransfer(fundTranferDTO);
+		ResponseDTO fundTransferResponse = fundTransferService.fundTransfer(fundTranferDTO);
 
 		return new ResponseEntity<Object>(fundTransferResponse, HttpStatus.OK);
 	}
