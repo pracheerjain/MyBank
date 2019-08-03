@@ -17,51 +17,43 @@ import hcl.mybankapp.mybankapp.service.AccountService;
 
 @Service
 public class AccountServiceImpl implements AccountService {
-	
-	private static final Logger logger = LoggerFactory.getLogger(AccountServiceImpl.class); 
-	/*
-	 * @Autowired private AccountRepository AccountRepository;
-	 */
-	
+
+	private static final Logger logger = LoggerFactory.getLogger(AccountServiceImpl.class);
+
 	@Autowired
 	private AccountRepository accountRepository;
-	
+
 	@Autowired
 	private CustomerRepository customerRepository;
-	
-	
-	public ResponseDTO getAccountDetails(String customerId) throws ResourceNotFoundException{
-		if (null==customerId || "".equalsIgnoreCase(customerId)) {
+
+	public ResponseDTO getAccountDetails(String customerId) throws ResourceNotFoundException {
+		if (null == customerId || "".equalsIgnoreCase(customerId)) {
 			ResponseDTO response = new ResponseDTO();
 			throw new ResourceNotFoundException("Customer Id is not valid...Please check again");
-			
-			Optional<Customer> customerById= customerRepository.findByCustomerId(String customerId);
-			if(customerById.isPresent()) {
-				Customer customer= customerById.get();
-			
-			
-			Account account= new Account();
-			Optional<Account> account= accountRepository.findById(customer.get)
-			
-		}
-			
-			else {
-				throw new ResourceNotFoundException("Customer id is not valid");
-			}
-				
-			
-			
-		
-		
-		return null;
-		
-		
-	}
 
+			/*
+			 * Optional<Customer> customerById= customerRepository.findByCustomerId(String
+			 * customerId); if(customerById.isPresent()) { Customer customer=
+			 * customerById.get();
+			 * 
+			 * 
+			 * Account account= new Account(); Optional<Account> accountOptional=
+			 * accountRepository.findById(customer.getCustomerId());
+			 */
+
+		}
+
+		else {
+			throw new ResourceNotFoundException("Customer id is not valid");
+		}
+
+		return null;
+
+	}
 
 	@Override
 	public ResponseDTO getAccountSummary(String customerId) {
-	
+
 		return null;
-	}		
+	}
 }
