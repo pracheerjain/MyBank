@@ -45,7 +45,7 @@ public class Transaction implements Serializable {
 	private Account customerAccountNo;
 	
 	@Column(name = "beneficiary_account_no")
-	private Long beneficiaryAccountNo;
+	private String beneficiaryAccountNo;
 	
 	@Column(name = "final_account_balance")
 	private Double finalAccountBalance;
