@@ -27,7 +27,11 @@ public class LoginController {
 	public ResponseEntity<ResponseDTO> validateUser(@RequestBody CustomerDTO inCustomer) throws ApplicationException {
 		validate(inCustomer);
 		ResponseDTO response = loginServiceImpl.validateUser(inCustomer);
-		return new ResponseEntity<>(response, HttpStatus.OK);
+		if(response.getMessage().equals("success")) {
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+		
 		
 	}
 	

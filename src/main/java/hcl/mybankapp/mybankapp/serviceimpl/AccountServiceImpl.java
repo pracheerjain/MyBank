@@ -1,9 +1,21 @@
 package hcl.mybankapp.mybankapp.serviceimpl;
 
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import hcl.mybankapp.mybankapp.dto.ResponseDTO;
+import hcl.mybankapp.mybankapp.entity.Customer;
+import hcl.mybankapp.mybankapp.repository.AccountRepository;
+import hcl.mybankapp.mybankapp.service.AccountService;
+
 @Service
 public class AccountServiceImpl implements AccountService {
 	
-	private static final Logger logger = LoggerFactory.getLogger(TransactionSummaryServiceImpl.class); 
+	private static final Logger logger = LoggerFactory.getLogger(AccountServiceImpl.class); 
 	/*
 	 * @Autowired private TransactionRepository transactionRepository;
 	 */
