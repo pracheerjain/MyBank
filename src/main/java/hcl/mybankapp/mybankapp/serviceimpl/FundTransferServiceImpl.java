@@ -88,6 +88,7 @@ public class FundTransferServiceImpl implements FundTransferService {
 		transaction.setTransactionTime(LocalTime.now());
 		transaction.setTransationAmount(fundTranferDTO.getTransactionAmount());
 		transaction.setComments(fundTranferDTO.getComments());
+		transaction.setTransactionType("Debit");
 
 		Transaction transaction1 = new Transaction();
 		transaction1.setBeneficiaryAccountNo(fundTranferDTO.getBeneficiaryAccountNo());
@@ -97,6 +98,7 @@ public class FundTransferServiceImpl implements FundTransferService {
 		transaction1.setTransactionTime(LocalTime.now());
 		transaction1.setTransationAmount(fundTranferDTO.getTransactionAmount());
 		transaction1.setComments(fundTranferDTO.getComments());
+		transaction1.setTransactionType("Credit");
 
 		Transaction saveTransaction = transactionRepository.save(transaction);
 		transactionRepository.save(transaction1);
