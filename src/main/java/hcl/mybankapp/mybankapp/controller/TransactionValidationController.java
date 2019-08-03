@@ -23,6 +23,6 @@ public class TransactionValidationController {
 		if(null == accountNo | null == amount || 0.0 == amount) {
 			throw new ApplicationException("Enter valid Accouunt number or amount");
 		}
-		return new ResponseEntity<>(transactionValidationService.minimumBalanceValidation(accountNo, amount), HttpStatus.OK);
+		return new ResponseEntity<>(transactionValidationService.transactionValidations(accountNo, amount), HttpStatus.OK);
 	}
 }

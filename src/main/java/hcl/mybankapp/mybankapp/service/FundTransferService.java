@@ -6,7 +6,7 @@ import hcl.mybankapp.mybankapp.exception.ApplicationException;
 
 public interface FundTransferService {
 	
-	public ResponseDTO FundTransfer(FundTranferDTO fundTranferDTO) throws ApplicationException;
+	public ResponseDTO fundTransfer(FundTranferDTO fundTranferDTO) throws ApplicationException;
 	
 	public ResponseDTO getBeneficiaries(String customerId);
 	

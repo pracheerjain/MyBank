@@ -41,7 +41,7 @@ public class AccountServiceImpl implements AccountService {
 		}
 		// Pageable page=PageRequest.of(0, 10, Sort.by("date").descending());
 		Customer customer = optionalCustomer.get();
-		Account accountSummary = accountRepository.findbyAccountId(customer.getAccountId());
+		Account accountSummary = accountRepository.getAccountSummary(customer.getAccountId());
 
 		AccountDetailsResponseDTO accountDetailsResponseDTO = new AccountDetailsResponseDTO();
 		accountDetailsResponseDTO.setAccountBalance(accountSummary.getAccountBalance());
