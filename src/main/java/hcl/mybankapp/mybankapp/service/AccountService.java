@@ -1,5 +1,5 @@
 package hcl.mybankapp.mybankapp.service;
 
-public class AccountService {
+public interface AccountService {
 
 }
