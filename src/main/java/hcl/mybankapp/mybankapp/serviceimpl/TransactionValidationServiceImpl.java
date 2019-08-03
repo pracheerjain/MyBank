@@ -1,5 +1,7 @@
 package hcl.mybankapp.mybankapp.serviceimpl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import hcl.mybankapp.mybankapp.entity.Account;
@@ -9,12 +11,15 @@ import hcl.mybankapp.mybankapp.service.TransactionValidationService;
 
 public class TransactionValidationServiceImpl implements TransactionValidationService {
 
+	private static final Logger logger = LoggerFactory.getLogger(TransactionValidationServiceImpl.class);
+	
 	@Autowired
 	private AccountRepository accountRepository;
 
 	@Override
-	public String minimumBalanceValidation(String accountNumber, Double amount) throws ApplicationException {
-		if (null != accountNumber || null == amount) {
+	public Boolean minimumBalanceValidation(String accountNumber, Double amount) throws ApplicationException {
+		logger.info("Inside minimumBalanceValidation method of TransactionValidationServiceImpl class");
+		if (null == accountNumber || null == amount) {
 			throw new ApplicationException("Account Number or amount is invalid");
 		}
 
@@ -25,11 +30,13 @@ public class TransactionValidationServiceImpl implements TransactionValidationSe
 		if (minimumBalance > (availableBalance - amount)) {
 			throw new ApplicationException("Insufficient Balance");
 		}
-		Double totalTransactionAmountForToday = accountRepository.getTotalTransactedAmountOfDay(accountNumber);
-		if (transactionLimit < (totalTransactionAmountForToday + amount)) {
-			throw new ApplicationException("Exceeded DailyTransaction limit");
+		if (amount <= transactionLimit) {
+			Double totalTransactionAmountForToday = accountRepository.getTotalTransactedAmountOfDay(accountNumber);
+			if (transactionLimit < (totalTransactionAmountForToday + amount)) {
+				throw new ApplicationException("Exceeded DailyTransaction limit");
+			}
 		}
-		return "Transaction is valid";
+		return true;
 	}
 
 }

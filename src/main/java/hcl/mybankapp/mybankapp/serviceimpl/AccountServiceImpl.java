@@ -33,6 +33,7 @@ public class AccountServiceImpl implements AccountService {
 
 	public ResponseDTO getAccountSummary(String customerId) throws ResourceNotFoundException {
 
+		logger.debug("Inside getAccountSummary method of AccountServiceImpl class");
 		Optional<Customer> optionalCustomer = customerRepository.findByCustomerId(customerId);
 
 		if (!optionalCustomer.isPresent()) {
@@ -40,7 +41,7 @@ public class AccountServiceImpl implements AccountService {
 		}
 		// Pageable page=PageRequest.of(0, 10, Sort.by("date").descending());
 		Customer customer = optionalCustomer.get();
-		Account accountSummary = accountRepository.getAccountSummary(customer.getAccountId());
+		Account accountSummary = accountRepository.findbyAccountId(customer.getAccountId());
 
 		AccountDetailsResponseDTO accountDetailsResponseDTO = new AccountDetailsResponseDTO();
 		accountDetailsResponseDTO.setAccountBalance(accountSummary.getAccountBalance());
