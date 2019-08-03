@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import hcl.mybankapp.mybankapp.dto.CustomerDTO;
 import hcl.mybankapp.mybankapp.dto.ResponseDTO;
 import hcl.mybankapp.mybankapp.exception.ApplicationException;
+import hcl.mybankapp.mybankapp.exception.UserIsInactiveException;
 import hcl.mybankapp.mybankapp.serviceimpl.LoginServiceImpl;
 
 @RestController
@@ -24,15 +25,14 @@ public class LoginController {
 	LoginServiceImpl loginServiceImpl;
 	
 	@PostMapping("/validate")
-	public ResponseEntity<ResponseDTO> validateUser(@RequestBody CustomerDTO inCustomer) throws ApplicationException {
+	public ResponseEntity<ResponseDTO> validateUser(@RequestBody CustomerDTO inCustomer) throws ApplicationException, UserIsInactiveException {
 		validate(inCustomer);
 		ResponseDTO response = loginServiceImpl.validateUser(inCustomer);
-		if(response.getMessage().equals("success")) {
+		if(response.getHttpStatus().equals(HttpStatus.OK)) {
 			return new ResponseEntity<>(response, HttpStatus.OK);
 		}
-		return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-		
-		
+		else
+			throw new ApplicationException(response.getMessage());
 	}
 	
 	

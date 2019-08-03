@@ -30,7 +30,6 @@ public class Transaction {
 	
 	@ManyToOne
 	@JoinColumn(name = "customer_account_no")
-	@Column(name = "customer_account_no")
 	private Account customerAccountNo;
 	
 	@Column(name = "beneficiary_account_no")
