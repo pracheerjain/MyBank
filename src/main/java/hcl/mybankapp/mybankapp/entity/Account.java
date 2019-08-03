@@ -35,9 +35,6 @@ public class Account implements Serializable {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "customer_id")
-	private Long customerId;
-
 	@Column(name = "account_type")
 	private String accountType;
 
@@ -54,7 +51,7 @@ public class Account implements Serializable {
 	private Double accountMinBal;
 
 	@Column(name = "transaction_limit")
-	private Integer transactionLimit;
+	private Double transactionLimit;
 
 	@OneToMany(mappedBy = "customerAccountNo", cascade = CascadeType.ALL)
 	private List<Transaction> transactionList = new ArrayList<>();
