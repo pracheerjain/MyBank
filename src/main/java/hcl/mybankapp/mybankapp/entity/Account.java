@@ -41,7 +41,7 @@ public class Account implements Serializable {
 	@Column(name = "account_balance")
 	private Double accountBalance;
 
-	@Column(name = "account_no")
+	@Column(name = "account_no", unique = true)
 	private String accountNo;
 
 	@Column(name = "account_creation_date")
