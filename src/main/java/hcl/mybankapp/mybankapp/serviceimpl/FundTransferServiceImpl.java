@@ -91,7 +91,7 @@ public class FundTransferServiceImpl implements FundTransferService {
 		Transaction transaction1 = new Transaction();
 		transaction1.setBeneficiaryAccountNo(fundTranferDTO.getBeneficiaryAccountNo());
 		transaction1.setCustomerAccountNo(saveBeneAccount);
-		transaction1.setFinalAccountBalance(finalbalance);
+		transaction1.setFinalAccountBalance(benefinalbalance);
 		transaction1.setTransactionDate(LocalDate.now());
 		transaction1.setTransactionTime(LocalTime.now());
 		transaction1.setTransationAmount(fundTranferDTO.getTransactionAmount());
