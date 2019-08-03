@@ -18,13 +18,25 @@ public class Account {
 	private Long id;
 
 	@Column(name = "customer_id")
-	private Customer customerId;
+	private Long customerId;
 	
 	@Column(name = "account_type")
 	private String accountType;
 	
 	@Column(name = "account_balance")
 	private String accountBalance;
+	
+	@Column(name = "account_no")
+	private String accountNo;
+	
+	@Column(name = "account_creation_date")
+	private String accountCreationDate;
+	
+	@Column(name = "account_min_bal")
+	private Double accountMinBal;
+	
+	@Column(name = "transaction_limit")
+	private Integer transactionLimit;
 	
 	
 
