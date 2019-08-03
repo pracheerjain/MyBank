@@ -1,5 +1,7 @@
 package hcl.mybankapp.mybankapp.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +32,7 @@ public class Account {
 	private String accountNo;
 	
 	@Column(name = "account_creation_date")
-	private String accountCreationDate;
+	private LocalDate accountCreationDate;
 	
 	@Column(name = "account_min_bal")
 	private Double accountMinBal;
