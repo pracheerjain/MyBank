@@ -17,4 +17,5 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
 	
 	@Query(value="select * from Account where id = :accountId",nativeQuery = true)
 	public Account getAccountSummary(Account accountId);
+	
 }
