@@ -1,5 +1,6 @@
 package hcl.mybankapp.mybankapp.serviceimpl;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
@@ -43,6 +44,18 @@ public class TransactionValidationServiceImplTest {
 		accountDetail = Optional.of(account);
 		when(accountRepository.findByAccountNo(accountNo)).thenReturn(accountDetail);
 		when(accountRepository.getTotalTransactedAmountOfDay(1L)).thenReturn(5000.0);
-		assertTrue(transactionValidationServiceImpl.transactionValidations(accountNo, 200.0));
+		assertEquals(true, transactionValidationServiceImpl.transactionValidations(accountNo, 200.0));
+	}
+	
+	@Test(expected = ApplicationException.class)
+	public void testTransactionValidationsIfTransactionAmountIsGreaterThanAvailableBalance() throws ApplicationException {
+		String accountNo = "35673";
+		account.setId(1L);
+		account.setAccountMinBal(1000.0);
+		account.setAccountBalance(1000.0);
+		account.setTransactionLimit(8000.0);
+		accountDetail = Optional.of(account);
+		when(accountRepository.findByAccountNo(accountNo)).thenReturn(accountDetail);
+		assertEquals(true, transactionValidationServiceImpl.transactionValidations(accountNo, 200.0));
 	}
 }
