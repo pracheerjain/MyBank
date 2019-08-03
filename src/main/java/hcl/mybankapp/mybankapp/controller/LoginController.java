@@ -24,6 +24,14 @@ public class LoginController {
 	@Autowired
 	LoginServiceImpl loginServiceImpl;
 	
+	
+	/**
+	 * 
+	 * @param inCustomer takes userid and password which is the part of the dto.
+	 * @return returns the response code 
+	 * 
+	 * @throws UserIsInactiveException throws the custom exception when your is inactive
+	 */
 	@PostMapping("/validate")
 	public ResponseEntity<ResponseDTO> validateUser(@RequestBody CustomerDTO inCustomer) throws ApplicationException, UserIsInactiveException {
 		validate(inCustomer);
