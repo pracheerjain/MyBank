@@ -49,7 +49,6 @@ public class AccountServiceImpl implements AccountService {
 		if (!optionalCustomer.isPresent()) {
 			throw new ResourceNotFoundException("Invalid customer id");
 		}
-		// Pageable page=PageRequest.of(0, 10, Sort.by("date").descending());
 		Customer customer = optionalCustomer.get();
 		Account accountSummary = accountRepository.getAccountSummary(customer.getAccountId());
 
@@ -85,7 +84,7 @@ public class AccountServiceImpl implements AccountService {
 	        Pageable page=PageRequest.of(0, 10, Sort.by("transaction_date").descending());
 	        
 	        Account customerAccount = accountRepository.getAccountSummary(customer.getAccountId());
-	        List<Transaction> accountDetails= transactionRepository.getTransactionDetails(customerAccount.getAccountNo(), page);
+	        List<Transaction> accountDetails= transactionRepository.getTransactionDetails(customerAccount.getId(), page);
 	        
 	        TransactionDetailsDTO transactionDetailsDTO = new TransactionDetailsDTO();
 	        transactionDetailsDTO.setAccountBalance(customerAccount.getAccountBalance());

@@ -13,6 +13,6 @@ import hcl.mybankapp.mybankapp.entity.Transaction;
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 	
 	@Query(value="select * from transaction where customer_account_no =:accountNo",nativeQuery=true)
-    List<Transaction> getTransactionDetails(String accountNo, Pageable page);
+    List<Transaction> getTransactionDetails(Long accountNo, Pageable page);
 	
 }
