@@ -82,7 +82,7 @@ public class AccountServiceImpl implements AccountService {
 	                
 	        Customer customer = optionalCustomer.get();
 	        
-	        Pageable page=PageRequest.of(0, 10, Sort.by("transactionDate").descending());
+	        Pageable page=PageRequest.of(0, 10, Sort.by("transaction_date").descending());
 	        
 	        Account customerAccount = accountRepository.getAccountSummary(customer.getAccountId());
 	        List<Transaction> accountDetails= transactionRepository.getTransactionDetails(customerAccount.getAccountNo(), page);
