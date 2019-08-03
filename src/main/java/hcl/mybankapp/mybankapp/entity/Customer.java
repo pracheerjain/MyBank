@@ -5,10 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity(name = "customer")
 public class Customer {
 	
@@ -28,4 +32,8 @@ public class Customer {
 	
 	@Column(name = "status")
 	private String status;
+	
+	@OneToOne
+	@JoinColumn(name = "account_id" )
+	private Account accountId;
 }
