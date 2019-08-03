@@ -27,5 +27,5 @@ public class Customer {
 	private String password;
 	
 	@Column(name = "status")
-	private Integer status;
+	private String status;
 }
