@@ -11,7 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -35,7 +37,8 @@ public class Account implements Serializable {
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "customer_id")
+	@OneToOne()
+	@JoinColumn(name = "customer_id")
 	private Long customerId;
 
 	@Column(name = "account_type")
@@ -54,7 +57,7 @@ public class Account implements Serializable {
 	private Double accountMinBal;
 
 	@Column(name = "transaction_limit")
-	private Integer transactionLimit;
+	private Double transactionLimit;
 
 	@OneToMany(mappedBy = "customerAccountNo", cascade = CascadeType.ALL)
 	private List<Transaction> transactionList = new ArrayList<>();
