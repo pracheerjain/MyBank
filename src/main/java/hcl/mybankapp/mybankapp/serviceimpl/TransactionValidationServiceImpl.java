@@ -17,9 +17,11 @@ public class TransactionValidationServiceImpl implements TransactionValidationSe
 		if(null != accountNumber || null == amount ) {
 			throw new ApplicationException("Account Number or amount is invalid");
 		}
-		Double minimumBalance;
-		Account accountDetails = accountRepository
-		if(minimumBalance > amount)
+		
+		Account accountDetails = accountRepository.findByAccountNo(accountNumber);
+		Double minimumBalance = accountDetails.getAccountMinBal();
+		Double availableBalance;// = accountDetails.getAccountBalance();
+		if(minimumBalance > aval)
 		return null;
 	}
 

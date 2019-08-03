@@ -5,8 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import hcl.mybankapp.mybankapp.entity.Account;
 
-@Repository
-public interface AccountRepository extends JpaRepository<Account, Long>{
 
-	public void findByAccount;
+@Repository
+public interface AccountRepository extends JpaRepository<Account,Long> {
+	
+	public Account getAccountDetails(String customerId);
+
+	public Account findByAccountNo(String accountNumber);
 }
