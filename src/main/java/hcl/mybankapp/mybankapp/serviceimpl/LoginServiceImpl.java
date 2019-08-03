@@ -29,17 +29,20 @@ public class LoginServiceImpl implements LoginService {
 		
 		if(customer.isPresent()) {
 			
+			
 			if(customer.get().getStatus().equalsIgnoreCase("y")) {
-				
+				logger.debug("in correct case");
 				response.setMessage("Success");
 				response.setHttpStatus(HttpStatus.OK);
 			}
 			else {
+				logger.debug("in inactive case");
 				response.setMessage("User is inactive") ;
 				response.setHttpStatus(HttpStatus.BAD_REQUEST);
 			}
 		}
 		else {
+			logger.debug("in authentication failed");
 			response.setMessage("Authentication Failed");
 			response.setHttpStatus(HttpStatus.BAD_REQUEST);
 		}
