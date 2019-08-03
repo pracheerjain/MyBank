@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import hcl.mybankapp.mybankapp.entity.Account;
 
 
-
 @Repository
 public interface AccountRepository extends JpaRepository<Account,Long> {
 	
