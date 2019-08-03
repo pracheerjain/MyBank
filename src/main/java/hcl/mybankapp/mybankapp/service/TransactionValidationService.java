@@ -1,6 +1,8 @@
 package hcl.mybankapp.mybankapp.service;
 
+import hcl.mybankapp.mybankapp.exception.ApplicationException;
+
 public interface TransactionValidationService {
 
-	public String minimumBalanceValidation(String accountNumber, Double amount);
+	public String minimumBalanceValidation(String accountNumber, Double amount) throws ApplicationException;
 }
