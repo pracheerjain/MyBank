@@ -43,6 +43,7 @@ public class AccountServiceImpl implements AccountService {
 
 	public ResponseDTO getAccountSummary(String customerId) throws ResourceNotFoundException {
 
+		logger.debug("Inside getAccountSummary method of AccountServiceImpl class");
 		Optional<Customer> optionalCustomer = customerRepository.findByCustomerId(customerId);
 
 		if (!optionalCustomer.isPresent()) {

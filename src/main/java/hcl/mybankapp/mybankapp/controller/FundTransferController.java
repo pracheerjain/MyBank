@@ -43,6 +43,10 @@ public class FundTransferController {
 	@GetMapping("/beneficiary/{customerId}")
 	public ResponseEntity<Object> getBeneficiary(@PathVariable("customerId") String customerId)
 			throws ApplicationException {
+	
+		if(StringUtils.isEmpty(customerId)) {
+			throw new ApplicationException(ERR_MSG + "Customer Account No");
+		}
 
 		return new ResponseEntity<Object>(fundTransferService.getBeneficiaries(customerId), HttpStatus.OK);
 	}
@@ -57,7 +61,7 @@ public class FundTransferController {
 			throw new ApplicationException(ERR_MSG + "Customer Account No");
 		}
 
-		if (null != fundTranferDTO.getTransactionAmount()) {
+		if (null == fundTranferDTO.getTransactionAmount()) {
 			throw new ApplicationException(ERR_MSG + "Transaction Amount");
 		}
 
