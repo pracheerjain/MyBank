@@ -14,4 +14,7 @@ public interface AccountRepository extends JpaRepository<Account,Long> {
 	
 	@Query(value = "select sum(transaction_amount from transaction where from_account = :accountNumber and transaction_date = Now() group by from_account)", nativeQuery = true)
 	public Double getTotalTransactedAmountOfDay(String accountNumber);
+	
+	@Query(value="select * from Account where customerId =: customerId",nativeQuery = true)
+	public Account getAccountSummary(String customerId);
 }
