@@ -53,6 +53,9 @@ public class Transaction implements Serializable {
 	@Column(name = "transation_amount")
 	private Double transationAmount;
 	
+	@Column(name = "transaction_type")
+	private String transactionType;
+	
 	@Column(name = "comments")
 	private String comments;
 	
