@@ -1,5 +1,5 @@
 package hcl.mybankapp.mybankapp.service;
 
-public interface AccountService {
+public interface LoginService {
 
 }

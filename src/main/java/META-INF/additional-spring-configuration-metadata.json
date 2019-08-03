@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "sonar.host.url",
+    "type": "java.lang.String",
+    "description": "A description for 'sonar.host.url'"
+  },
+  {
+    "name": "management.server.port",
+    "type": "java.lang.String",
+    "description": "A description for 'management.server.port'"
+  },
+  {
+    "name": "management.endpoints.web.exposure.include",
+    "type": "java.lang.String",
+    "description": "A description for 'management.endpoints.web.exposure.include'"
+  },
+  {
+    "name": "info.app.name",
+    "type": "java.lang.String",
+    "description": "A description for 'info.app.name'"
+  },
+  {
+    "name": "info.app.description",
+    "type": "java.lang.String",
+    "description": "A description for 'info.app.description'"
+  },
+  {
+    "name": "info.app.version",
+    "type": "java.lang.String",
+    "description": "A description for 'info.app.version'"
+  }
+]}
