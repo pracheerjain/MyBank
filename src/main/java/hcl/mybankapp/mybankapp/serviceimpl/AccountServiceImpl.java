@@ -21,6 +21,9 @@ import hcl.mybankapp.mybankapp.service.AccountService;
 public class AccountServiceImpl implements AccountService {
 
 	private static final Logger logger = LoggerFactory.getLogger(AccountServiceImpl.class);
+	/*
+	 * @Autowired private AccountRepository AccountRepository;
+	 */
 
 	@Autowired
 	private AccountRepository accountRepository;
@@ -28,25 +31,29 @@ public class AccountServiceImpl implements AccountService {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-
 	public ResponseDTO getAccountSummary(String customerId) throws ResourceNotFoundException {
 
 		Optional<Customer> optionalCustomer = customerRepository.findByCustomerId(customerId);
 
-		if (optionalCustomer.isPresent()) {
-			// Pageable page=PageRequest.of(0, 10, Sort.by("date").descending());
-			Account accountSummary = accountRepository.getAccountSummary((optionalCustomer.get().getCustomerId()));
-
-			AccountDetailsResponseDTO responseDTO = new AccountDetailsResponseDTO();
-
-			ResponseDTO response = new ResponseDTO();
-			response.setHttpStatus(HttpStatus.OK);
-			response.setMessage("Account summary");
-			response.setData(responseDTO);
-			return response;
-		} else {
+		if (!optionalCustomer.isPresent()) {
 			throw new ResourceNotFoundException("Invalid customer id");
 		}
+		// Pageable page=PageRequest.of(0, 10, Sort.by("date").descending());
+		Customer customer = optionalCustomer.get();
+		Account accountSummary = accountRepository.getAccountSummary(customer.getAccountId());
+
+		AccountDetailsResponseDTO accountDetailsResponseDTO = new AccountDetailsResponseDTO();
+		accountDetailsResponseDTO.setAccountBalance(accountSummary.getAccountBalance());
+		accountDetailsResponseDTO.setAccountHolderName(customer.getCustomerName());
+		accountDetailsResponseDTO.setAccountNumber(accountSummary.getAccountNo());
+		accountDetailsResponseDTO.setAccountType(accountSummary.getAccountType());
+
+		ResponseDTO responseDTO = new ResponseDTO();
+		responseDTO.setHttpStatus(HttpStatus.OK);
+		responseDTO.setMessage("Account summary");
+		responseDTO.setData(accountDetailsResponseDTO);
+		return responseDTO;
+
 	}
 
 	@Override

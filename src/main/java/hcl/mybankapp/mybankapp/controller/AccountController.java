@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import hcl.mybankapp.mybankapp.dto.ResponseDTO;
@@ -16,6 +17,7 @@ import hcl.mybankapp.mybankapp.service.AccountService;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/account")
 public class AccountController {
 	
 private static final Logger logger = LoggerFactory.getLogger(AccountController.class); 
@@ -34,7 +36,7 @@ private static final Logger logger = LoggerFactory.getLogger(AccountController.c
 		}
 		else {
 			logger.debug("Customer Id received is "+ customerId);
-			ResponseDTO transactions= AccountService.getAccountDetails(customerId);
+			ResponseDTO transactions= AccountService.getAccountSummary(customerId);
 			logger.debug("Summary details for the customer are " + transactions );
 			return new ResponseEntity<ResponseDTO>(transactions,HttpStatus.OK);
 		}
