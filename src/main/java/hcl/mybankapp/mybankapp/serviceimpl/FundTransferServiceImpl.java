@@ -68,15 +68,16 @@ public class FundTransferServiceImpl implements FundTransferService {
 		} else {
 			beneAccout = optionalBeneAccount.get();
 		}
-		
-		transactionValidationService.transactionValidations(fundTranferDTO.getCustomerAccountNo(), fundTranferDTO.getTransactionAmount());
+
+		transactionValidationService.transactionValidations(fundTranferDTO.getCustomerAccountNo(),
+				fundTranferDTO.getTransactionAmount());
 
 		Double finalbalance = account.getAccountBalance() - fundTranferDTO.getTransactionAmount();
 		account.setAccountBalance(finalbalance);
 		Account saveAccount = accountRepository.save(account);
 
 		Double benefinalbalance = beneAccout.getAccountBalance() + fundTranferDTO.getTransactionAmount();
-		account.setAccountBalance(benefinalbalance);
+		beneAccout.setAccountBalance(benefinalbalance);
 		Account saveBeneAccount = accountRepository.save(beneAccout);
 
 		Transaction transaction = new Transaction();
@@ -91,7 +92,7 @@ public class FundTransferServiceImpl implements FundTransferService {
 		Transaction transaction1 = new Transaction();
 		transaction1.setBeneficiaryAccountNo(fundTranferDTO.getBeneficiaryAccountNo());
 		transaction1.setCustomerAccountNo(saveBeneAccount);
-		transaction1.setFinalAccountBalance(finalbalance);
+		transaction1.setFinalAccountBalance(benefinalbalance);
 		transaction1.setTransactionDate(LocalDate.now());
 		transaction1.setTransactionTime(LocalTime.now());
 		transaction1.setTransationAmount(fundTranferDTO.getTransactionAmount());
