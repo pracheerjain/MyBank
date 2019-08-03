@@ -1,5 +1,6 @@
 package hcl.mybankapp.mybankapp.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -11,12 +12,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-@Data
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity(name = "transaction")
-public class Transaction {
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class Transaction implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3972741260607418209L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -30,7 +42,6 @@ public class Transaction {
 	
 	@ManyToOne
 	@JoinColumn(name = "customer_account_no")
-	@Column(name = "customer_account_no")
 	private Account customerAccountNo;
 	
 	@Column(name = "beneficiary_account_no")
