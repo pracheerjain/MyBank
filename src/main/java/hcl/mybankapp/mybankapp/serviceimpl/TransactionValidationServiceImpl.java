@@ -18,7 +18,7 @@ public class TransactionValidationServiceImpl implements TransactionValidationSe
 			throw new ApplicationException("Account Number or amount is invalid");
 		}
 
-		Account accountDetails = accountRepository.findByAccountNo(accountNumber);
+		Account accountDetails = accountRepository.findByAccountNo(accountNumber).get();
 		Double minimumBalance = accountDetails.getAccountMinBal();
 		Double availableBalance = accountDetails.getAccountBalance();
 		Double transactionLimit = accountDetails.getTransactionLimit();

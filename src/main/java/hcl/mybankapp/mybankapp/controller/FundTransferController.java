@@ -57,7 +57,7 @@ public class FundTransferController {
 			throw new ApplicationException(ERR_MSG + "Customer Account No");
 		}
 
-		if (null != fundTranferDTO.getTransactionAmount()) {
+		if (null == fundTranferDTO.getTransactionAmount()) {
 			throw new ApplicationException(ERR_MSG + "Transaction Amount");
 		}
 

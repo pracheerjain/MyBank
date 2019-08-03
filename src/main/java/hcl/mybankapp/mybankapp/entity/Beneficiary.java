@@ -20,7 +20,7 @@ public class Beneficiary {
 	@Column(name = "customer_id")
 	private String customerId;
 	
-	@Column(name = "beneficiary_id")
-	private String beneficiaryId;
+	@Column(name = "beneficiary_account_no")
+	private String beneficiaryAccountNo;
 
 }
