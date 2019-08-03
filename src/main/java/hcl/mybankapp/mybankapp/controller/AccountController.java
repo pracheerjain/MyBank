@@ -41,5 +41,21 @@ private static final Logger logger = LoggerFactory.getLogger(AccountController.c
 			return new ResponseEntity<ResponseDTO>(transactions,HttpStatus.OK);
 		}
 	}
+	
+	@GetMapping("/details/{customerId}")
+    public ResponseEntity<ResponseDTO> accountDetails(@PathVariable String customerId) throws ApplicationException{
+        
+        logger.info("Received customer id");
+        
+        if (null == customerId || "".equalsIgnoreCase(customerId)) {
+            throw new ApplicationException("Please enter valid Customer Id...");
+        }
+        else {
+            logger.debug("Customer Id received is "+ customerId);
+            ResponseDTO transactions= AccountService.getAccountDetails(customerId);
+            logger.debug("Transaction details for the customer are " + transactions );
+            return new ResponseEntity<ResponseDTO>(transactions,HttpStatus.OK);
+        }
+	}
 
 }

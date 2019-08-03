@@ -20,6 +20,11 @@ public class LoginServiceImpl implements LoginService {
 	private static final Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 	@Autowired
 	CustomerRepository customerRepository;
+	
+	/**
+	 * This method takes customer dto as a in parameter consist of username 
+	 * and password and send it to service to validate.
+	 */
 	public ResponseDTO validateUser(CustomerDTO inCustomer) throws UserIsInactiveException {
 		
 		ResponseDTO response = new ResponseDTO();
