@@ -1,4 +1,4 @@
-package com.hcl.financialspendanalyzerapp.dto;
+package hcl.mybankapp.mybankapp.dto;
 
 import org.springframework.http.HttpStatus;
 
