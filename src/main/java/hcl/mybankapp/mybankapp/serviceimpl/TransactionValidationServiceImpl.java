@@ -11,18 +11,25 @@ public class TransactionValidationServiceImpl implements TransactionValidationSe
 
 	@Autowired
 	private AccountRepository accountRepository;
-	
+
 	@Override
 	public String minimumBalanceValidation(String accountNumber, Double amount) throws ApplicationException {
-		if(null != accountNumber || null == amount ) {
+		if (null != accountNumber || null == amount) {
 			throw new ApplicationException("Account Number or amount is invalid");
 		}
-		
+
 		Account accountDetails = accountRepository.findByAccountNo(accountNumber);
 		Double minimumBalance = accountDetails.getAccountMinBal();
-		Double availableBalance;// = accountDetails.getAccountBalance();
-		if(minimumBalance > aval)
-		return null;
+		Double availableBalance = accountDetails.getAccountBalance();
+		Double transactionLimit = accountDetails.getTransactionLimit();
+		if (minimumBalance > (availableBalance - amount)) {
+			throw new ApplicationException("Insufficient Balance");
+		}
+		Double totalTransactionAmountForToday = accountRepository.getTotalTransactedAmountOfDay(accountNumber);
+		if (transactionLimit < (totalTransactionAmountForToday + amount)) {
+			throw new ApplicationException("Exceeded DailyTransaction limit");
+		}
+		return "Transaction is valid";
 	}
 
 }

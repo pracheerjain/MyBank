@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
@@ -26,6 +28,8 @@ public class Transaction {
 	@Column(name = "transaction_time")
 	private LocalTime transactionTime;
 	
+	@ManyToOne
+	@JoinColumn(name = "customer_account_no")
 	@Column(name = "customer_account_no")
 	private Account customerAccountNo;
 	
