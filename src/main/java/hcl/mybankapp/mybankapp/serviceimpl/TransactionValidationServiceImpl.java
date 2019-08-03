@@ -44,7 +44,7 @@ public class TransactionValidationServiceImpl implements TransactionValidationSe
 			throw new ApplicationException("Exceeded DailyTransaction limit");
 		}
 		Double totalTransactionAmountForToday = accountRepository.getTotalTransactedAmountOfDay(accountDetail.getId());
-		if (transactionLimit < (totalTransactionAmountForToday + amount)) {
+		if (null != totalTransactionAmountForToday && transactionLimit < (totalTransactionAmountForToday + amount)) {
 			throw new ApplicationException("Exceeded DailyTransaction limit");
 		}
 		return true;
