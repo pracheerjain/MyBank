@@ -40,7 +40,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(ConstraintViolationException.class)
 	public final ResponseEntity<Object> handleAllExceptions(ConstraintViolationException ex, WebRequest request) {
-		ResponseDTO error = new ResponseDTO("Username should be unique", HttpStatus.BAD_REQUEST, null);
+		ResponseDTO error = new ResponseDTO("AccountNo should be unique", HttpStatus.BAD_REQUEST, null);
 		logger.error(ex);
 		return new ResponseEntity<>(error, error.getHttpStatus());
 	}

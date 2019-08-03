@@ -12,10 +12,8 @@ import hcl.mybankapp.mybankapp.exception.ApplicationException;
 import hcl.mybankapp.mybankapp.exception.ResourceNotFoundException;
 import hcl.mybankapp.mybankapp.repository.AccountRepository;
 import hcl.mybankapp.mybankapp.service.TransactionValidationService;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 public class TransactionValidationServiceImpl implements TransactionValidationService {
 
 	private static final Logger logger = LoggerFactory.getLogger(TransactionValidationServiceImpl.class);
@@ -30,8 +28,6 @@ public class TransactionValidationServiceImpl implements TransactionValidationSe
 			throw new ApplicationException("Account Number or amount is invalid");
 		}
 		
-		accountNumber = null;
-
 		Optional<Account> accountDetails = accountRepository.findByAccountNo(accountNumber);
 		if(!accountDetails.isPresent()) {
 			throw new ResourceNotFoundException("Enter valid account number");
@@ -40,6 +36,7 @@ public class TransactionValidationServiceImpl implements TransactionValidationSe
 		Double minimumBalance = accountDetail.getAccountMinBal();
 		Double availableBalance = accountDetail.getAccountBalance();
 		Double transactionLimit = accountDetail.getTransactionLimit();
+
 		if (minimumBalance > (availableBalance - amount)) {
 			throw new ApplicationException("Insufficient Balance");
 		}
