@@ -45,4 +45,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(error, error.getHttpStatus());
 	}
 	
+	@ExceptionHandler(UserIsInactiveException.class)
+	public final ResponseEntity<Object> handleAllExceptions(UserIsInactiveException ex, WebRequest request) {
+		ResponseDTO error = new ResponseDTO("User is inactive", HttpStatus.BAD_REQUEST, null);
+		logger.error(ex);
+		return new ResponseEntity<>(error, error.getHttpStatus());
+	}
 }
