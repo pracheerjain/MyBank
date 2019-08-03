@@ -9,23 +9,23 @@ import javax.persistence.Id;
 import lombok.Data;
 
 @Data
-@Entity(name = "customer")
-public class Customer {
+@Entity(name = "account")
+public class Account {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 
-	@Column(name = "customer_name")
-	private String customerName;
-	
 	@Column(name = "customer_id")
-	private String customerId;
+	private Customer customerId;
 	
-	@Column(name = "password")
-	private String password;
+	@Column(name = "account_type")
+	private String accountType;
 	
-	@Column(name = "status")
-	private Integer status;
+	@Column(name = "account_balance")
+	private String accountBalance;
+	
+	
+
 }
